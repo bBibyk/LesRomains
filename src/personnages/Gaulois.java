@@ -21,10 +21,17 @@ public class Gaulois {
 	private String prendreParole() {
 		return "Le gaulois " + nom + " : ";
 	}
+	
+	public void boirePotion(int forcePotion) {
+		effetPotion=forcePotion;
+		if (forcePotion==3) {
+			parler("Merci Druide, je sens que ma force est 3 fois décuplée.");
+		}
+	}
 
 	public void frapper(Romain romain) {
 		System.out.println(nom + " envoie un grand coup dans la machoire de " + romain.getNom());
-		romain.recevoirCoup(force / 3);
+		romain.recevoirCoup(force*effetPotion / 3);
 	}
 
 	@Override
@@ -34,10 +41,8 @@ public class Gaulois {
 
 	public static void main(String[] args) {
 		Gaulois asterix = new Gaulois("Astérix", 8);
-		System.out.println(asterix.getNom());
-		System.out.println(asterix);
-		asterix.parler("Ave!");
-		Romain brutus = new Romain("Brutus", 3);
+		Romain brutus = new Romain("Brutus", 4);
+		asterix.boirePotion(3);
 		asterix.frapper(brutus);
 	}
 }
